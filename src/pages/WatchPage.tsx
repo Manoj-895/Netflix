@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Player from "video.js/dist/types/player";
 import { Box, Stack, Typography } from "@mui/material";
@@ -10,7 +10,7 @@ import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import SettingsIcon from "@mui/icons-material/Settings";
 import BrandingWatermarkOutlinedIcon from "@mui/icons-material/BrandingWatermarkOutlined";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-
+import { MEDIA_TYPE } from "src/types/Common";
 import useWindowSize from "src/hooks/useWindowSize";
 import { formatTime } from "src/utils/common";
 
@@ -19,9 +19,15 @@ import VolumeControllers from "src/components/watch/VolumeControllers";
 import VideoJSPlayer from "src/components/watch/VideoJSPlayer";
 import PlayerSeekbar from "src/components/watch/PlayerSeekbar";
 import PlayerControlButton from "src/components/watch/PlayerControlButton";
-import MainLoadingScreen from "src/components/MainLoadingScreen";
+import { useParams } from "react-router-dom";
+import {
+  useLazyGetAppendedVideosQuery,
+} from "src/store/slices/discover";
+import { MAIN_PATH } from "src/constant";
 
 export function Component() {
+  const [getVideoDetail, { data: detail }] = useLazyGetAppendedVideosQuery();
+  const routeParams = useParams();
   const playerRef = useRef<Player | null>(null);
   const [playerState, setPlayerState] = useState({
     paused: false,
@@ -102,7 +108,15 @@ export function Component() {
   const handleGoBack = () => {
     navigate("/browse");
   };
-
+  useEffect(() => {
+    if(localStorage.getItem('email') === null){
+      navigate(`/${MAIN_PATH.root}`)
+    }
+    if (routeParams.watchId) {
+      getVideoDetail({mediaType:MEDIA_TYPE.Movie , id: parseInt(routeParams.watchId) });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [routeParams.watchId]);
   if (!!videoJsOptions.width) {
     return (
       <Box
@@ -110,7 +124,24 @@ export function Component() {
           position: "relative",
         }}
       >
-        <VideoJSPlayer options={videoJsOptions} onReady={handlePlayerReady} />
+        <VideoJSPlayer
+          options={{
+            loop: true,
+            muted: false,
+            autoplay: true,
+            controls: false,
+            responsive: true,
+            fluid: true,
+            techOrder: ["youtube"],
+            sources: [
+              {
+                type: "video/youtube",
+                src: `https://www.youtube.com/watch?v=${detail?.videos.results[0]?.key}`,
+              },
+            ],
+          }}
+          onReady={handlePlayerReady}
+        />
         {playerRef.current && playerInitialized && (
           <Box
             sx={{
@@ -141,7 +172,7 @@ export function Component() {
                   color: "white",
                 }}
               >
-                Title
+                {detail?.original_title}
               </Typography>
             </Box>
             <Box
@@ -169,7 +200,7 @@ export function Component() {
 
             <Box
               px={{ xs: 1, sm: 2 }}
-              sx={{ position: "absolute", bottom: 20, left: 0, right: 0 }}
+              sx={{ position: "absolute", bottom: 150, left: 0, right: 0 }}
             >
               {/* Seekbar */}
               <Stack direction="row" alignItems="center" spacing={1}>

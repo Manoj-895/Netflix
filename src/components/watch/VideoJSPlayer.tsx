@@ -3,6 +3,7 @@ import Player from "video.js/dist/types/player";
 import videojs from "video.js";
 import "videojs-youtube";
 import "video.js/dist/video-js.css";
+import './video.css'
 
 export default function VideoJSPlayer({
   options,
@@ -30,38 +31,11 @@ export default function VideoJSPlayer({
             onReady && onReady(player);
           }
         ));
-
-        // import("video.js").then(async ({ default: videojs }) => {
-        //   await import("video.js/dist/video-js.css");
-        //   if (options["techOrder"] && options["techOrder"].includes("youtube")) {
-        //     // eslint-disable-next-line
-        //     await import("videojs-youtube");
-        //   }
-        //   const player = (playerRef.current = videojs(
-        //     videoElement,
-        //     options,
-        //     () => {
-        //       onReady && onReady(player);
-        //     }
-        //   ));
-        // });
-
-        // await import("video.js/dist/video-js.css");
-        // const videojs = await import("video.js");
-        // if (options["techOrder"] && options["techOrder"].includes("youtube")) {
-        //   // eslint-disable-next-line
-        //   await import("videojs-youtube");
-        // }
-        // const player = (playerRef.current = videojs.default(
-        //   videoElement,
-        //   options,
-        //   () => {
-        //     onReady && onReady(player);
-        //   }
-        // ));
-
-        // You could update an existing player in the `else` block here
-        // on prop change, for example:
+        player.on('error', (error:string) => {
+            alert("Video Error: Video  not found ")
+            window.location.href="/browse"
+          
+        })
       } else {
         const player = playerRef.current;
         // player.autoplay(options.autoplay);

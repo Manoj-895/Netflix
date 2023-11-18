@@ -6,6 +6,9 @@ import { MEDIA_TYPE } from "src/types/Common";
 import { CustomGenre, Genre } from "src/types/Genre";
 import SliderRowForGenre from "src/components/VideoSlider";
 import store from "src/store";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { MAIN_PATH } from "src/constant";
 
 export async function loader() {
   await store.dispatch(
@@ -14,11 +17,16 @@ export async function loader() {
   return null;
 }
 export function Component() {
+  const navigate = useNavigate();
   const { data: genres, isSuccess } = useGetGenresQuery(MEDIA_TYPE.Movie);
-
+  useEffect(()=>{
+    if(localStorage.getItem('email') === null){
+      navigate(`/${MAIN_PATH.root}`)
+    }
+  },[])
   if (isSuccess && genres && genres.length > 0) {
     return (
-      <Stack spacing={2}>
+      <Stack spacing={3}>
         <HeroSection mediaType={MEDIA_TYPE.Movie} />
         {[...COMMON_TITLES, ...genres].map((genre: Genre | CustomGenre) => (
           <SliderRowForGenre

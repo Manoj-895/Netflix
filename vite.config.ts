@@ -4,5 +4,15 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        globals: {
+          react: 'React',
+        },
+      },
+    },
+  },
   plugins: [react(), tsconfigPaths()]
 })

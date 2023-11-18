@@ -15,11 +15,14 @@ import { APP_BAR_HEIGHT } from "src/constant";
 import Logo from "../Logo";
 import SearchBox from "../SearchBox";
 import NetflixNavigationLink from "../NetflixNavigationLink";
+import { useNavigate } from "react-router-dom";
+import { MAIN_PATH } from "src/constant";
 
 const pages = ["My List", "Movies", "Tv Shows"];
 
 const MainHeader = () => {
   const isOffset = useOffSetTop(APP_BAR_HEIGHT);
+  const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -39,8 +42,14 @@ const MainHeader = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (event: React.MouseEvent<HTMLElement>, setting : string) => {
     setAnchorElUser(null);
+    if( setting === 'Logout'){
+      localStorage.removeItem('email');
+      navigate(`/${MAIN_PATH.root}`)
+    }else{
+      navigate(`/${MAIN_PATH.root}`) 
+    }
   };
 
   return (
@@ -120,7 +129,7 @@ const MainHeader = () => {
         >
           {pages.map((page) => (
             <NetflixNavigationLink
-              to=""
+              to="/browse"
               variant="subtitle1"
               key={page}
               onClick={handleCloseNavMenu}
@@ -153,8 +162,8 @@ const MainHeader = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {["Account", "Logout"].map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
+            {["Account","Logout"].map((setting) => (
+              <MenuItem key={setting} onClick={(e)=>handleCloseUserMenu(e,setting)}>
                 <Typography textAlign="center">{setting}</Typography>
               </MenuItem>
             ))}

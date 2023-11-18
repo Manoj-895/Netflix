@@ -46,7 +46,7 @@ export default function GridWithInfiniteScroll({
           variant="h5"
           sx={{ color: "text.primary", mb: 2 }}
         >{`${genre.name} Movies`}</Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={8}>
           {data.results
             .filter((v) => !!v.backdrop_path)
             .map((video, idx) => (

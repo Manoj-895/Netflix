@@ -78,7 +78,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
       setMuted(!status);
     }
   }, []);
-
+  
   return (
     <Box sx={{ position: "relative", zIndex: 1 }}>
       <Box
@@ -218,7 +218,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                     {video.overview}
                   </MaxLineTypography>
                   <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
-                    <PlayButton size="large" />
+                    <PlayButton size="large" data={video?.id}/>
                     <MoreInfoButton
                       size="large"
                       onClick={() => {

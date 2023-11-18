@@ -1,5 +1,6 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import { MAIN_PATH } from "src/constant";
+import NetflixLoginPage from "src/pages/Login";
 
 import MainLayout from "src/layouts/MainLayout";
 
@@ -10,7 +11,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: MAIN_PATH.root,
-        element: <Navigate to={`/${MAIN_PATH.browse}`} />,
+        element: <NetflixLoginPage/>,
       },
       {
         path: MAIN_PATH.browse,
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: MAIN_PATH.watch,
+        path: `watch/:watchId`,
         lazy: () => import("src/pages/WatchPage"),
       },
     ],

@@ -7,15 +7,15 @@ export default function PlayButton({ sx, ...others }: ButtonProps) {
   const navigate = useNavigate();
   return (
     <Button
-      color="inherit"
       variant="contained"
+      color="inherit"
       startIcon={
         <PlayArrowIcon
           sx={{
             fontSize: {
-              xs: "24px !important",
-              sm: "32px !important",
-              md: "40px !important",
+              xs: "16px !important",
+              sm: "20px !important",
+              md: "24px !important",
             },
           }}
         />
@@ -24,14 +24,15 @@ export default function PlayButton({ sx, ...others }: ButtonProps) {
       sx={{
         px: { xs: 1, sm: 2 },
         py: { xs: 0.5, sm: 1 },
-        fontSize: { xs: 18, sm: 24, md: 28 },
+        fontSize: { xs: 16, sm: 20, md: 24 },
         lineHeight: 1.5,
         fontWeight: "bold",
         whiteSpace: "nowrap",
+        bgcolor: "#ffffff",
         textTransform: "capitalize",
         ...sx,
       }}
-      onClick={() => navigate(`/${MAIN_PATH.watch}`)}
+      onClick={() => navigate(`/${MAIN_PATH.watch}/${others.data}`)}
     >
       Play
     </Button>
