@@ -2,6 +2,7 @@ import Button from "@mui/material/Button";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useNavigate } from "react-router-dom";
 import { MAIN_PATH } from "src/constant";
+import React from "react";
 
 export default function PlayButton({ sx, ...others }: any) {
   const navigate = useNavigate();

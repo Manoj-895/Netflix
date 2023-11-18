@@ -23,6 +23,7 @@ import {
   useLazyGetAppendedVideosQuery,
 } from "src/store/slices/discover";
 import { MAIN_PATH } from "src/constant";
+import React from "react";
 
 export function Component() {
   const [getVideoDetail, { data: detail }] = useLazyGetAppendedVideosQuery();
