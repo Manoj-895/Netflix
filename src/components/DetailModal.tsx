@@ -44,14 +44,14 @@ export default function DetailModal() {
     { skip: !detail.id }
   );
   const playerRef = useRef<Player | null>(null);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState<boolean | undefined>(true);
 
   const handleReady = useCallback((player: Player) => {
     playerRef.current = player;
     setMuted(player.muted());
   }, []);
 
-  const handleMute = useCallback((status: boolean) => {
+  const handleMute = useCallback((status: boolean | undefined) => {
     if (playerRef.current) {
       playerRef.current.muted(!status);
       setMuted(!status);
@@ -167,7 +167,7 @@ export default function DetailModal() {
                   {detail.mediaDetail?.title}
                 </MaxLineTypography>
                 <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
-                  <PlayButton sx={{ color: "black", py: 0 }} data={detail.mediaDetail?.videos.results[0]?.key}/>
+                  <PlayButton sx={{ color: "black", py: 0 }} data={parseInt(detail.mediaDetail?.videos.results[0]?.key)}/>
                   <NetflixIconButton>
                     <AddIcon />
                   </NetflixIconButton>

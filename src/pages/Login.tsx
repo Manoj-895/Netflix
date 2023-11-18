@@ -26,7 +26,7 @@ const NetflixLoginPage: React.FC = () => {
         setError(!isValidEmail);
     };
 
-    const handleSubmit = (event:React.ChangeEvent<HTMLInputElement>) => {
+    const handleSubmit = (event:React.ChangeEvent<HTMLInputElement>|React.FormEvent<HTMLFormElement>) => {
        event.preventDefault();
        if(email === '' || null){ setError(true); return}
        localStorage.setItem('email', email);
