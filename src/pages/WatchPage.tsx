@@ -62,7 +62,7 @@ export function Component() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [windowSize]);
 
-  const handlePlayerReady = function (player: Player): void {
+  const handlePlayerReady = function (player: any): void {
     player.on("pause", () => {
       setPlayerState((draft) => {
         return { ...draft, paused: true };
