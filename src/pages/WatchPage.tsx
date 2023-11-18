@@ -83,7 +83,9 @@ export function Component() {
 
     player.one("durationchange", () => {
       setPlayerInitialized(true);
-      setPlayerState((draft) => ({ ...draft, duration: player.duration() }));
+      setPlayerState((draft) => {
+        return { ...draft, duration: player.duration()};
+      });
     });
 
     playerRef.current = player;
