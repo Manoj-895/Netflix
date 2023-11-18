@@ -30,7 +30,7 @@ export default function Footer() {
             sx={{ color: "text.primary" }}
             href="https://github.com/crazy-man22"
           >
-            Crazy Man
+            Manoj
           </Link>
         </Typography>
       </Divider>
