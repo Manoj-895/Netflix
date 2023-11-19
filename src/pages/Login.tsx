@@ -43,7 +43,7 @@ const NetflixLoginPage: React.FC = () => {
             component="main"
             maxWidth="xs"
             sx={{
-                backgroundImage: 'linear-gradient(55deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.8) 100%), url("src/utils/netflixbg.jpg")',
+                backgroundImage: 'linear-gradient(55deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.8) 100%), url("/assets/netflixbg.jpg")',
                 backgroundSize: 'cover',
                 display: 'flex',
                 flexDirection: 'column',
