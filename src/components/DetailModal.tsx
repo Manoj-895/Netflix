@@ -27,7 +27,6 @@ import { useDetailModal } from "src/providers/DetailModalProvider";
 import { useGetSimilarVideosQuery } from "src/store/slices/discover";
 import { MEDIA_TYPE } from "src/types/Common";
 import VideoJSPlayer from "./watch/VideoJSPlayer";
-import React from "react";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {

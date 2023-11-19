@@ -20,7 +20,6 @@ import {
 } from "src/store/slices/discover";
 import { Movie } from "src/types/Movie";
 import VideoJSPlayer from "./watch/VideoJSPlayer";
-import React from "react";
 
 interface TopTrailerProps {
   mediaType: MEDIA_TYPE;
