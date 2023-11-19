@@ -11,9 +11,9 @@ export default function Footer() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        height: 150,
+        height: 70,
         bgcolor: "inherit",
-        px: "60px",
+        px: "20px",
       }}
     >
       <Divider
@@ -23,12 +23,12 @@ export default function Footer() {
         }}
       >
         <Typography color="grey.700" variant="h6" component="span">
-          Developed by{" "}
+         Developed by{" "}
           <Link
             target="_blank"
             underline="none"
             sx={{ color: "text.primary" }}
-            href="https://github.com/crazy-man22"
+            href="https://github.com/Manoj-895/Netflix"
           >
             Manoj
           </Link>
