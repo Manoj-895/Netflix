@@ -28,7 +28,7 @@ export default function Footer() {
             target="_blank"
             underline="none"
             sx={{ color: "text.primary" }}
-            href="https://github.com/Manoj-895/Netflix"
+            href="https://github.com/Manoj-895/Netflix/tree/develop"
           >
             Manoj
           </Link>
